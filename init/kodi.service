@@ -1,0 +1,16 @@
+[Unit]
+Description = Starts instance of Kodi using xinit
+After = systemd-user-sessions.service network.target sound.target mysqld.service
+Conflicts=getty@tty7.service
+
+[Service]
+User = kodi
+Group = kodi
+PAMName=login
+Type = simple
+TTYPath=/dev/tty7
+ExecStart = /usr/bin/xinit /usr/bin/dbus-launch --exit-with-session /usr/bin/kodi-standalone2 -- :0 -nolisten tcp vt7
+Restart = on-abort
+
+[Install]
+WantedBy = multi-user.target
