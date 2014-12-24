@@ -27,7 +27,7 @@ APP="${bindir}/${bin_name} --standalone $@"
 
 PULSE_START="$(which start-pulseaudio-x11)"
 if [ -n "$PULSE_START" ]; then
-	# delay needed to allow PA to initialize for xbmc
+	# delay needed to allow PA to initialize for kodi
 	# to detect all audio sources
   $PULSE_START
 	sleep 6s
