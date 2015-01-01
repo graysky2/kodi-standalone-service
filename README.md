@@ -11,5 +11,7 @@ If using xorg version >=1.16 then create /etc/X11/Xwrapper.config containing the
 	allowed_users = anybody
 	needs_root_rights = yes
 
+Note that the systemd service requires /var/lib/kodi to be user kodi's homedir.  See the readme.install which contains scriptlets used by the Arch Linux package system.  Users of other distros can adapt the code therein.
+
 ## Credit
 Credit for the service given to the Arch Linux maintainers of the official kodi package.
