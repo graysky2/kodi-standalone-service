@@ -18,12 +18,11 @@ depends=('systemd' 'xorg-server' 'xorg-xinit' 'kodi')
 replaces=('xbmc-standalone-service')
 install=readme.install
 source=("https://github.com/graysky2/$pkgname/archive/v$pkgver.tar.gz")
-sha256sums=('10d3077b99d9a2511c3fc38e3ce73436d9de05c765ea4c9c44ca7b8bcd607f85')
+sha256sums=('ce46d0e1e858ffabccd05de0d471323f680b510e5986fdd1ea13227e98f3b226')
 
 package() {
-	install -Dm755 "$srcdir/$pkgname-$pkgver/common/kodi-standalone2" \
-		"$pkgdir/usr/bin/kodi-standalone2"
-
+	install -Dm644 "$srcdir/$pkgname-$pkgver/init/kodi.service" \
+		"$pkgdir/usr/lib/systemd/system/kodi.service"
 	install -dm 700 "$pkgdir"/var/lib/kodi
 	chown 420:420 "$pkgdir"/var/lib/kodi
 }
