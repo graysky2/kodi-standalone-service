@@ -43,8 +43,7 @@ post_remove() {
 post_message() {
 	echo "Users of Xorg >=1.16 wishing to autostart kodi standalone"
 	echo "must create or modify /etc/X11/Xwrapper.config to contain"
-	echo "the following 2 lines:"
+	echo "the following:"
 	echo
 	echo "allowed_users = anybody"
-	echo "needs_root_rights = yes"
 }
