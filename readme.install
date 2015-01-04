@@ -33,19 +33,19 @@ post_upgrade() {
 		echo "cp -a /var/lib/xbmc/.xbmc/* /var/lib/kodi/.kodi"
 		echo "chown -R kodi:kodi /var/lib/kodi"
 	fi
+	
+	if [ "$(vercmp $2 1.8-1)" -lt 1 ]; then
+		if [[ -f /etc/X11/Xwrapper.config ]]; then
+			echo '-> It is no longer necessary to keep /etc/X11/Xwrapper.config for kodi to start properly.'
+		fi
+	else
+		/bin/true
+	fi
 }
 
 post_remove() {
 	getent passwd kodi > /dev/null 2>&1 && userdel kodi
 	getent group kodi > /dev/null 2>&1 && groupdel kodi
-}
-
-post_message() {
-	echo "Users of Xorg >=1.16 wishing to autostart kodi standalone"
-	echo "must create or modify /etc/X11/Xwrapper.config to contain"
-	echo "the following:"
-	echo
-	echo "allowed_users = anybody"
 }
 
 pre_install() {

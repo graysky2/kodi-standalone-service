@@ -5,12 +5,8 @@ A simple systemd service file to run kodi in standalone mode.
 * systemd
 * xorg-server with xorg-xinit
 
-## Post-install instructions
-If using xorg version >=1.16 then create /etc/X11/Xwrapper.config containing this line:
-
-	allowed_users = anybody
-
-Note that the systemd service requires /var/lib/kodi to be user kodi's homedir.  See the readme.install which contains scriptlets used by the Arch Linux package system.  Users of other distros can adapt the code therein.
+## Note
+Users no longer require `/etc/X11/Xwrapper.config` on the system anymore since the created X server becomes the [controlling process](http://www.freedesktop.org/software/systemd/man/systemd.exec.html#StandardInput=) of the VT to which it is bound.
 
 ## Credit
 Credit for the service given to the Arch Linux maintainers of the official kodi package.
