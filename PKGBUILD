@@ -8,7 +8,7 @@
 # Contributor: Maxime Gauduin <alucryd@gmail.com>
 
 pkgname=kodi-standalone-service
-pkgver=1.6
+pkgver=1.7
 pkgrel=1
 pkgdesc="Systemd service and user to autostart kodi at boot"
 arch=('any')
@@ -18,7 +18,7 @@ depends=('systemd' 'xorg-server' 'xorg-xinit' 'kodi')
 replaces=('xbmc-standalone-service')
 install=readme.install
 source=("https://github.com/graysky2/$pkgname/archive/v$pkgver.tar.gz")
-sha256sums=('ce46d0e1e858ffabccd05de0d471323f680b510e5986fdd1ea13227e98f3b226')
+sha256sums=('44a4f1ad4e800bf3973d164b403742b53789e7006ba113ed6b569e3e6353ac70')
 
 package() {
 	install -Dm644 "$srcdir/$pkgname-$pkgver/init/kodi.service" \

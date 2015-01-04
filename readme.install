@@ -47,3 +47,13 @@ post_message() {
 	echo
 	echo "allowed_users = anybody"
 }
+
+pre_install() {
+	/usr/bin/systemctl status xbmc.service &>/dev/null
+	if [[ $? -eq 0 ]]; then
+		# xbmc is running via this service
+		/usr/bin/systemctl stop xbmc.service &>/dev/null
+	else
+		/bin/true
+	fi
+}
