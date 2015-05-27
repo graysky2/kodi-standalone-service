@@ -2,6 +2,7 @@
 A simple systemd service file to run kodi in standalone mode.
 
 ## Dependency List
+* polkit
 * systemd
 * xorg-server with xorg-xinit
 
