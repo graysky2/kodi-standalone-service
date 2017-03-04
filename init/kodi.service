@@ -1,14 +1,14 @@
 [Unit]
 Description=Starts instance of Kodi using xinit
 After=systemd-user-sessions.service network.target sound.target mysqld.service
-Conflicts=getty@tty7.service
+Conflicts=getty@tty1.service
 
 [Service]
 User=kodi
 Group=kodi
 PAMName=login
-TTYPath=/dev/tty7
-ExecStart=/usr/bin/xinit /usr/bin/kodi-standalone -- :0 -nolisten tcp vt7
+TTYPath=/dev/tty1
+ExecStart=/usr/bin/xinit /usr/bin/kodi-standalone -- :0 -nolisten tcp vt1
 Restart=on-abort
 StandardInput=tty
 
