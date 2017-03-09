@@ -1,15 +1,35 @@
 # kodi-standalone-service
 A simple systemd service file to run kodi in standalone mode.
 
+## Installation
+### Arch Linux
+Arch Linux users (not Arch ARM users) can find a PKGBUILD in the [AUR](https://aur.archlinux.org/packages/kodi-standalone-service) that will take care of everything. Simply install and use.
+
+### Other distros
+Users of other distros should copy `kodi.service` to `/usr/lib/systemd/system/` and should create both a kodi user and home directory as follows:
+```
+ useradd -c 'kodi user' -u 420 -g kodi -G audio,video,network,optical \
+  passwd -l kodi > /dev/null
+
+ mkdir /var/lib/kodi/.kodi
+ chown -R kodi:kodi /var/lib/kodi/.kodi
+```
+
+## Usage
+Simply call systemd to start the service:
+```
+systemctl start kodi
+```
+
 ## Dependency List
 * polkit
 * systemd
 * xorg-server with xorg-xinit
 
 ## Note
-Most users no longer require `/etc/X11/Xwrapper.config` on the system since the created X server becomes the [controlling process](http://www.freedesktop.org/software/systemd/man/systemd.exec.html#StandardInput=) of the VT to which it is bound. Most users does not mean all users. There have been reports of some AMD users still requiring this file. As well, users of Xorg's native modesetting driver may also require it.
+Most users should not `/etc/X11/Xwrapper.config` since the created X server becomes the [controlling process](http://www.freedesktop.org/software/systemd/man/systemd.exec.html#StandardInput=) of the VT to which it is bound. Most users does not mean all users. There have been reports of some AMD users still requiring this file. As well, users of Xorg's native modesetting driver may also require it.
 
-The recommendation is to first try starting `kodi.service` it, but if the service fails to start X, create `/etc/X11/Xwrapper.config` and have it contain the following single line:
+The recommendation is to first try starting `kodi.service` without it, but if the service fails to start X, you may need to create `/etc/X11/Xwrapper.config` which should contain the following:
 ```
 needs_root_rights = yes
 ```
