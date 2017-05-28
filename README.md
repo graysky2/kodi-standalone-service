@@ -9,7 +9,9 @@ Arch Linux users (not Arch ARM users) can find a PKGBUILD in the [AUR](https://a
 Users of other distros should copy `kodi.service` to `/usr/lib/systemd/system/` and should create both a kodi user and home directory as follows:
 ```
  useradd -c 'kodi user' -u 420 -g kodi -G audio,video,network,optical \
-  passwd -l kodi > /dev/null
+   -d /var/lib/kodi -s /usr/bin/nologin kodi
+ 
+ passwd -l kodi > /dev/null
 
  mkdir /var/lib/kodi/.kodi
  chown -R kodi:kodi /var/lib/kodi/.kodi
