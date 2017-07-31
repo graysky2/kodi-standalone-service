@@ -8,6 +8,7 @@ User=kodi
 Group=kodi
 PAMName=login
 TTYPath=/dev/tty1
+ExecStartPre=/usr/bin/sleep 2s
 ExecStart=/usr/bin/xinit /usr/bin/kodi-standalone -- :0 -nolisten tcp vt1
 Restart=on-abort
 StandardInput=tty
