@@ -1,5 +1,5 @@
 [Unit]
-Description=Kodi standalone
+Description=Kodi standalone (X11)
 After=systemd-user-sessions.service network-online.target sound.target mysqld.service
 Requires=network-online.target
 Conflicts=getty@tty1.service
