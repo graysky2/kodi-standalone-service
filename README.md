@@ -1,5 +1,5 @@
 # kodi-standalone-service
-A systemd service unit to run [Kodi](https://kodi.tv/) in standalone mode without the need for a DE.
+Systemd service units to run [Kodi](https://kodi.tv/) in standalone mode without the need for a DE.  Both X11 and GBM are supported (makes little sense to use Wayland in standalone mode).
 
 ## Installation
 ### Arch Linux
@@ -9,10 +9,10 @@ Arch Linux users can find a PKGBUILD in the [AUR](https://aur.archlinux.org/pack
 Users of Arch ARM should NOT use this method as the distro package provides analogous functionality.
 
 ### Other distros
-Users of other distros should copy `kodi.service` to `/usr/lib/systemd/system/` and should create both a kodi user and home directory as follows:
+Users of other distros should copy `kodi.service` and `kodi-gbm.service` to `/usr/lib/systemd/system/` and should create both a kodi user and home directory as follows:
 ```
- useradd -u 420 -U -G audio,video -d /var/lib/kodi -s /usr/bin/nologin kodi
- 
+ useradd -c 'kodi user' -u 420 -g kodi -G audio,video,network,optical -d /var/lib/kodi -s /usr/bin/nologin kodi
+
  passwd -l kodi > /dev/null
 
  mkdir /var/lib/kodi
@@ -22,15 +22,21 @@ Users of other distros should copy `kodi.service` to `/usr/lib/systemd/system/` 
 Note that the kodi user's home directory is `/var/lib/kodi/` in this example, NOT `/home/kodi/` like a regular user.
 
 ## Usage
-Simply call systemd to start the service:
+Simply call the requisite service to start, for kodi-x11:
 ```
 systemctl start kodi
 ```
+Or for kodi-gbm:
+```
+systemctl start kodi-gbm
+```
 
 ## Dependency List
+* kodi (x11 or gbm)
 * polkit
-* systemd
-* xorg-server with xorg-xinit
+
+* xorg-server and xorg-xinit (for running x11)
+* libinput (for running gbm)
 
 ## Acknowledgments
 Much of the credit for this service goes to the Arch Linux maintainers of the official kodi package. Note that they removed it upon the [1.16-1 release of Xorg](https://git.archlinux.org/svntogit/community.git/commit/trunk?h=packages/xbmc&id=9763c6d32678f3a3f45c195bfae92eee209d504f).
