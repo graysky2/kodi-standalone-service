@@ -11,7 +11,8 @@ Users of Arch ARM should NOT use this method as the distro package provides anal
 ### Other distros
 Users of other distros should copy `kodi.service` and `kodi-gbm.service` to `/usr/lib/systemd/system/` and should create both a kodi user and home directory as follows:
 ```
- useradd -c 'kodi user' -u 420 -g kodi -G audio,video,network,optical -d /var/lib/kodi -s /usr/bin/nologin kodi
+ useradd -c 'kodi user' -u 420 -g kodi -G audio,input,network,optical,uucp,video \
+   -d /var/lib/kodi -s /usr/bin/nologin kodi
 
  passwd -l kodi > /dev/null
 
