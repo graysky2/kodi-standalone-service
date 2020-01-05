@@ -9,16 +9,11 @@ Arch Linux users can find a PKGBUILD in the [AUR](https://aur.archlinux.org/pack
 Users of Arch ARM should NOT use this method as the distro package provides analogous functionality.
 
 ### Other distros
-Users of other distros should copy `kodi.service` and `kodi-gbm.service` to `/usr/lib/systemd/system/` and should create both a kodi user and home directory as follows:
-```
- useradd -c 'kodi user' -u 420 -g kodi -G audio,network,optical,uucp,video \
-   -d /var/lib/kodi -s /usr/bin/nologin kodi
+Users of other distros should install the following files:
 
- passwd -l kodi > /dev/null
-
- mkdir /var/lib/kodi
- chown -R kodi:kodi /var/lib/kodi
-```
+* `init/kodi.service` and `init/kodi-gbm.service` to `/usr/lib/systemd/system`
+* `sysusers.conf` to `/usr/lib/sysusers.d`, then run `systemd-sysusers`
+* `tmpfiles.conf` to `/usr/lib/tmpfiles.d`, then run `systemd-tmpfiles --create`
 
 Note that the kodi user's home directory is `/var/lib/kodi/` in this example, NOT `/home/kodi/` like a regular user.
 
