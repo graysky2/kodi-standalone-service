@@ -14,6 +14,7 @@ Environment=WINDOWING=gbm
 ExecStart=/usr/bin/kodi-standalone
 Restart=on-abort
 StandardInput=tty
+StandardOutput=journal
 
 [Install]
 WantedBy=graphical.target

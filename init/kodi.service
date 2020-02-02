@@ -13,6 +13,7 @@ Environment=WINDOWING=x11
 ExecStart=/usr/bin/xinit /usr/bin/kodi-standalone -- :0 -nolisten tcp vt1
 Restart=on-abort
 StandardInput=tty
+StandardOutput=journal
 
 [Install]
 WantedBy=graphical.target
