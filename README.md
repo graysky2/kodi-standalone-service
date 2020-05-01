@@ -8,6 +8,9 @@ Arch Linux users can find a PKGBUILD in the [AUR](https://aur.archlinux.org/pack
 ### Arch ARM
 Users of Arch ARM should NOT use this method as the distro package provides analogous functionality.
 
+### Ubuntu
+For the kodi user to access devices on `/dev/ttyxxxx`, users will need to edit `init/sysusers.conf` and uncomment the line corresponding to enable membership in the dialout group.
+
 ### Other distros
 Users of other distros should install the following files:
 
@@ -27,7 +30,7 @@ Or for kodi-gbm:
 systemctl start kodi-gbm
 ```
 
-## Dependency List
+## Dependencies
 * kodi (x11 or gbm)
 * polkit
 
