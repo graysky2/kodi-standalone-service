@@ -1,12 +1,18 @@
 # kodi-standalone-service
-Systemd service units to run [Kodi](https://kodi.tv/) in standalone mode without the need for a DE.  Both X11 and GBM are supported (makes little sense to use Wayland in standalone mode).
+Systemd service units to run [Kodi](https://kodi.tv/) in standalone mode without the need for a DE.  X11, Wayland, and GBM are supported.
+
+Which one to choose?  Depends...
+
+In terms of functionality, X11 is probably the most mature and feature rich.  Wayland is next in line and should be considered on-par with X11, however, a known limitation of Wayland is having the resolution and frame rate set in the compositor rather than in kodi's GUI.  As well, Wayland currently does not support VT switching.  GBM has some known features it lacks compared the X11 and Wayland.  A complete list can be found in [Kodi issue 14876](https://github.com/xbmc/xbmc/issues/14876).
+
+Another factor that may affect choice is the number of dependencies required to run which will vary distro-to-distro.
 
 ## Installation
 ### Arch Linux
 Arch Linux users can find a PKGBUILD in the [AUR](https://aur.archlinux.org/packages/kodi-standalone-service) that will take care of everything. Simply install and use.
 
-### Arch ARM
-Users of Arch ARM should NOT use this method as the distro package provides analogous functionality.
+### ARM distros
+Users of ARM distros such as Arch ARM, Raspbian, etc. should NOT use these files.
 
 ### Ubuntu
 For the kodi user to access devices on `/dev/ttyxxxx`, users will need to edit `init/sysusers.conf` and uncomment the line corresponding to enable membership in the dialout group.
@@ -14,27 +20,20 @@ For the kodi user to access devices on `/dev/ttyxxxx`, users will need to edit `
 ### Other distros
 Users of other distros should install the following files:
 
-* `init/kodi.service` and `init/kodi-gbm.service` to `/usr/lib/systemd/system`
-* `init/sysusers.conf` to `/usr/lib/sysusers.d`, then run `systemd-sysusers`
-* `init/tmpfiles.conf` to `/usr/lib/tmpfiles.d`, then run `systemd-tmpfiles --create`
+* `init/*.service`  to `/usr/lib/systemd/system/`
+* `init/sysusers.conf` to `/usr/lib/sysusers.d/`, then run `systemd-sysusers`
+* `init/tmpfiles.conf` to `/usr/lib/tmpfiles.d/`, then run `systemd-tmpfiles --create`
 
 Note that the kodi user's home directory is `/var/lib/kodi/` in this example, NOT `/home/kodi/` like a regular user.
 
 ## Usage
-Simply call the requisite service to start, for kodi-x11:
-```
-systemctl start kodi
-```
-Or for kodi-gbm:
-```
-systemctl start kodi-gbm
-```
+Simply [start/enable](https://wiki.archlinux.org/index.php/Systemd#Using_units) the requisite service.
 
 ## Dependencies
-* kodi (x11 or gbm)
+* kodi (x11 or wayland or gbm)
 * polkit
-
 * xorg-server and xorg-xinit (for running x11)
+* libinput and cage (for running wayland)
 * libinput (for running gbm)
 
 ## Acknowledgments
