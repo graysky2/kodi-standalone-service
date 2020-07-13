@@ -17,4 +17,4 @@ StandardInput=tty
 StandardOutput=journal
 
 [Install]
-WantedBy=graphical.target
+Alias=display-manager.service
