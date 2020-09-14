@@ -36,6 +36,9 @@ Simply [start/enable](https://wiki.archlinux.org/index.php/Systemd#Using_units) 
 * libinput and cage (for running wayland)
 * libinput (for running gbm)
 
+## Passing environment variables to the service
+Should the need arise, one can pass environment variables to the service by creating `/etc/conf.d/kodi-standalone` and populating it with the needed variables.
+
 ## Acknowledgments
 Much of the credit for this service goes to the Arch Linux maintainers of the official kodi package. Note that they removed it upon the [1.16-1 release of Xorg](https://git.archlinux.org/svntogit/community.git/commit/trunk?h=packages/xbmc&id=9763c6d32678f3a3f45c195bfae92eee209d504f).
 
