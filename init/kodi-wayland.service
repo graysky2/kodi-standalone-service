@@ -14,7 +14,8 @@ Environment=WINDOWING=wayland
 ExecStart=/usr/bin/cage -- /usr/bin/kodi-standalone
 Restart=on-abort
 StandardInput=tty
-StandardOutput=journal
+StandardOutput=file:/var/log/kodi-wayland-standalone.log
+StandardError=file:/var/log/kodi-wayland-standalone.log
 
 [Install]
 Alias=display-manager.service
