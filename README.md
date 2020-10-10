@@ -1,7 +1,7 @@
 # kodi-standalone-service
 Systemd service units to run [Kodi](https://kodi.tv/) in standalone mode without the need for a DE.  X11, Wayland, and GBM are supported.
 
-Which one to choose?  Depends...
+Which one to choose?
 
 In terms of functionality, X11 is probably the most mature and feature rich.  Wayland is next in line and should be considered on-par with X11, however, a known limitation of Wayland is having the resolution and frame rate set in the compositor rather than in kodi's GUI.  As well, Wayland currently does not support VT switching.  GBM has some known features it lacks compared the X11 and Wayland.  A complete list can be found in [Kodi issue 14876](https://github.com/xbmc/xbmc/issues/14876).
 
@@ -17,7 +17,7 @@ Users of ARM distros such as Arch ARM, Raspberry Pi OS (formerly Raspbian), etc.
 ### Ubuntu
 For the kodi user to access devices on `/dev/ttyxxxx`, users will need to edit `init/sysusers.conf` and uncomment the line corresponding to enable membership in the dialout group.
 
-### Other distros
+### Other distros (manual installation)
 Users of other distros should install the following files:
 
 * `init/*.service`  to `/usr/lib/systemd/system/`
@@ -31,10 +31,10 @@ Simply [start/enable](https://wiki.archlinux.org/index.php/Systemd#Using_units) 
 
 ## Dependencies
 * kodi (x11 or wayland or gbm)
-* polkit
-* xorg-server and xorg-xinit (for running x11)
 * libinput and cage (for running wayland)
 * libinput (for running gbm)
+* polkit
+* xorg-server and xorg-xinit (for running x11)
 
 ## Passing environment variables to the service
 Should the need arise, one can pass environment variables to the service by creating `/etc/conf.d/kodi-standalone` and populating it with the needed variables.
@@ -46,7 +46,7 @@ Much of the credit for this service goes to the Arch Linux maintainers of the of
 ### Service not starting
 Most users should not need `/etc/X11/Xwrapper.config` since the created X server becomes the [controlling process](http://www.freedesktop.org/software/systemd/man/systemd.exec.html#StandardInput=) of the VT to which it is bound. Most users does not mean all users. There have been reports of some AMD users still requiring this file. As well, users of Xorg's native modesetting driver may also require it.
 
-The recommendation is to first try starting `kodi.service` without it, but if the service fails to start X, you may need to create `/etc/X11/Xwrapper.config` which should contain the following:
+The recommendation is to first try starting `kodi-x11.service` without it, but if the service fails to start X, you may need to create `/etc/X11/Xwrapper.config` which should contain the following:
 ```
 needs_root_rights = yes
 ```

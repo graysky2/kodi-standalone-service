@@ -11,12 +11,11 @@ EnvironmentFile=-/etc/conf.d/kodi-standalone
 PAMName=login
 TTYPath=/dev/tty1
 Environment=WINDOWING=x11
-ExecStart=/usr/bin/xinit /usr/bin/kodi-standalone -- :0 -nolisten tcp vt1
-ExecStop=/usr/bin/pkill kodi
+ExecStart=/usr/bin/xinit /usr/lib/kodi/kodi-x11 --standalone -- :0 -quiet -nolisten tcp vt1
+ExecStop=/usr/bin/killall --user kodi --exact --wait kodi-x11
 Restart=on-abort
 StandardInput=tty
-StandardOutput=file:/var/log/kodi-x11-standalone.log
-StandardError=file:/var/log/kodi-x11-standalone.log
+StandardOutput=journal
 
 [Install]
 Alias=display-manager.service

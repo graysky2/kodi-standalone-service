@@ -11,11 +11,11 @@ EnvironmentFile=-/etc/conf.d/kodi-standalone
 PAMName=login
 TTYPath=/dev/tty1
 Environment=WINDOWING=wayland
-ExecStart=/usr/bin/cage -- /usr/bin/kodi-standalone
+ExecStart=/usr/bin/cage -- /usr/lib/kodi/kodi-wayland --standalone
+ExecStop=/usr/bin/killall --user kodi --exact --wait kodi-wayland
 Restart=on-abort
 StandardInput=tty
-StandardOutput=file:/var/log/kodi-wayland-standalone.log
-StandardError=file:/var/log/kodi-wayland-standalone.log
+StandardOutput=journal
 
 [Install]
 Alias=display-manager.service
