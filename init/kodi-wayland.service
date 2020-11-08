@@ -11,7 +11,7 @@ EnvironmentFile=-/etc/conf.d/kodi-standalone
 PAMName=login
 TTYPath=/dev/tty1
 Environment=WINDOWING=wayland
-ExecStart=/usr/bin/cage -- /usr/lib/kodi/kodi-wayland --standalone
+ExecStart=/usr/bin/cage -- /usr/bin/kodi-standalone --standalone
 ExecStop=/usr/bin/killall --user kodi --exact --wait kodi-wayland
 Restart=on-abort
 StandardInput=tty
