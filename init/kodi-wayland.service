@@ -1,6 +1,6 @@
 [Unit]
 Description=Kodi standalone (Wayland)
-After=remote-fs.target systemd-user-sessions.service network-online.target nss-lookup.target sound.target bluetooth.target polkit.service upower.service mysqld.service
+After=remote-fs.target network-online.target nss-lookup.target sound.target bluetooth.target polkit.service upower.service mysqld.service
 Wants=network-online.target polkit.service upower.service
 Conflicts=getty@tty1.service
 
@@ -8,7 +8,6 @@ Conflicts=getty@tty1.service
 User=kodi
 Group=kodi
 EnvironmentFile=-/etc/conf.d/kodi-standalone
-PAMName=login
 TTYPath=/dev/tty1
 Environment=WINDOWING=wayland
 ExecStart=/usr/bin/cage -- /usr/bin/kodi-standalone
