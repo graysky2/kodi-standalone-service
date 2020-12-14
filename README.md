@@ -23,6 +23,7 @@ Users of other distros should install the following files:
 * `init/*.service`  to `/usr/lib/systemd/system/`
 * `init/sysusers.conf` to `/usr/lib/sysusers.d/`, then run `systemd-sysusers`
 * `init/tmpfiles.conf` to `/usr/lib/tmpfiles.d/`, then run `systemd-tmpfiles --create`
+* `polkit/10-kodi.rules` to `/usr/share/polkit-1/rules.d/`, then run `udevadm control --reload-rules && udevadm trigger`
 
 Note that the kodi user's home directory is `/var/lib/kodi/` in this example, NOT `/home/kodi/` like a regular user.
 
