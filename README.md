@@ -18,12 +18,11 @@ Users of ARM distros such as Arch ARM, Raspberry Pi OS (formerly Raspbian), etc.
 For the kodi user to access devices on `/dev/ttyxxxx`, users will need to edit `init/sysusers.conf` and uncomment the line corresponding to enable membership in the dialout group.
 
 ### Other distros (manual installation)
-Users of other distros should install the following files:
+Users of other distros can just run `make install` as the root user.  Then, as the root user:
 
-* `init/*.service`  to `/usr/lib/systemd/system/`
-* `init/sysusers.conf` to `/usr/lib/sysusers.d/`, then run `systemd-sysusers`
-* `init/tmpfiles.conf` to `/usr/lib/tmpfiles.d/`, then run `systemd-tmpfiles --create`
-* `polkit/10-kodi.rules` to `/usr/share/polkit-1/rules.d/`, then run `udevadm control --reload-rules && udevadm trigger`
+* Run `systemd-sysusers`
+* Run `systemd-tmpfiles --create`
+* Run `udevadm control --reload-rules && udevadm trigger`
 
 Note that the kodi user's home directory is `/var/lib/kodi/` in this example, NOT `/home/kodi/` like a regular user.
 
