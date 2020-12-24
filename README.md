@@ -43,6 +43,9 @@ Should the need arise, one can pass environment variables to the service by crea
 Much of the credit for this service goes to the Arch Linux maintainers of the official kodi package. Note that they removed it upon the [1.16-1 release of Xorg](https://git.archlinux.org/svntogit/community.git/commit/trunk?h=packages/xbmc&id=9763c6d32678f3a3f45c195bfae92eee209d504f).
 
 ## Tips and Tricks
+### Pulseaudio
+Currently, users of pulseaudio will need configure it to run in [system mode](https://www.freedesktop.org/wiki/Software/PulseAudio/Documentation/User/SystemWide/) to work with these service files.
+
 ### Service not starting
 Most users should not need `/etc/X11/Xwrapper.config` since the created X server becomes the [controlling process](http://www.freedesktop.org/software/systemd/man/systemd.exec.html#StandardInput=) of the VT to which it is bound. Most users does not mean all users. There have been reports of some AMD users still requiring this file. As well, users of Xorg's native modesetting driver may also require it.
 
