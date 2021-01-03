@@ -20,15 +20,8 @@ For the kodi user to access devices on `/dev/ttyxxxx`, users will need to edit `
 ### Other distros (manual installation)
 Users of other distros can just run `make install` as the root user.  Then, as the root user:
 
-<<<<<<< HEAD
 * Run `systemd-sysusers`
 * Run `systemd-tmpfiles --create`
-* Run `udevadm control --reload-rules && udevadm trigger`
-=======
-* `init/*.service`  to `/usr/lib/systemd/system/`
-* `init/sysusers.conf` to `/usr/lib/sysusers.d/`, then run `systemd-sysusers`
-* `init/tmpfiles.conf` to `/usr/lib/tmpfiles.d/`, then run `systemd-tmpfiles --create`
->>>>>>> parent of 34515c3 (Consistent behavior on a systemctl stop vs reboot)
 
 Note that the kodi user's home directory is `/var/lib/kodi/` in this example, NOT `/home/kodi/` like a regular user.
 
@@ -39,7 +32,6 @@ Simply [start/enable](https://wiki.archlinux.org/index.php/Systemd#Using_units) 
 * kodi (x11 or wayland or gbm)
 * libinput and cage (for running wayland)
 * libinput (for running gbm)
-* polkit
 * xorg-server and xorg-xinit (for running x11)
 
 ## Passing environment variables to the service
@@ -49,9 +41,6 @@ Should the need arise, one can pass environment variables to the service by crea
 Much of the credit for this service goes to the Arch Linux maintainers of the official kodi package. Note that they removed it upon the [1.16-1 release of Xorg](https://git.archlinux.org/svntogit/community.git/commit/trunk?h=packages/xbmc&id=9763c6d32678f3a3f45c195bfae92eee209d504f).
 
 ## Tips and Tricks
-### Pulseaudio
-Currently, users of pulseaudio will need configure it to run in [system mode](https://www.freedesktop.org/wiki/Software/PulseAudio/Documentation/User/SystemWide/) to work with these service files.
-
 ### Service not starting
 Most users should not need `/etc/X11/Xwrapper.config` since the created X server becomes the [controlling process](http://www.freedesktop.org/software/systemd/man/systemd.exec.html#StandardInput=) of the VT to which it is bound. Most users does not mean all users. There have been reports of some AMD users still requiring this file. As well, users of Xorg's native modesetting driver may also require it.
 
