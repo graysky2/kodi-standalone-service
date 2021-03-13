@@ -5,6 +5,7 @@ INITDIR = $(PREFIX)/lib/systemd/system
 USERDIR = $(PREFIX)/lib/sysusers.d
 TMPFDIR = $(PREFIX)/lib/tmpfiles.d
 UDEVDIR = $(PREFIX)/lib/udev/rules.d
+MANDIR = $(PREFIX)/share/man/man1
 
 RM = rm
 INSTALL = install -p
@@ -30,6 +31,10 @@ install-init:
 	$(INSTALL_DATA) init/tmpfiles.conf "$(DESTDIR)$(TMPFDIR)/kodi-standalone.conf"
 	$(INSTALL_DATA) init/sysusers.conf "$(DESTDIR)$(USERDIR)/kodi-standalone.conf"
 
+install-man:
+	$(INSTALL_DIR) "$(DESTDIR)$(MANDIR)"
+	$(INSTALL_DATA) doc/kodi.service.1 "$(DESTDIR)$(MANDIR)/kodi.service.1"
+
 uninstall:
 	$(RM) "$(DESTDIR)$(INITDIR)/kodi-gbm.service"
 	$(RM) "$(DESTDIR)$(INITDIR)/kodi-wayland.service"
@@ -37,7 +42,8 @@ uninstall:
 	$(RM) "$(DESTDIR)$(TMPFDIR)/kodi-standalone.conf"
 	$(RM) "$(DESTDIR)$(USERDIR)/kodi-standalone.conf"
 	$(RM) "$(DESTDIR)$(UDEVDIR)/99-kodi.rules"
+	$(RM) "$(DESTDIR)$(MANDIR)/kodi.service.1"
 
-install: install-common install-init
+install: install-common install-init install-man
 
 .PHONY: install-common install-init uninstall
