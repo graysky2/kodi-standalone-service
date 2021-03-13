@@ -11,9 +11,6 @@ Another factor that may affect choice is the number of dependencies required to 
 ### Arch Linux
 Arch Linux users can find a PKGBUILD in the [AUR](https://aur.archlinux.org/packages/kodi-standalone-service) that will take care of everything. Simply install and use.
 
-### ARM distros
-Users of ARM distros such as Arch ARM, Raspberry Pi OS (formerly Raspbian), etc. should NOT use these files since their official corresponding kodi packages supply their own version of a service. If you are knowledgeable enough with your distro, feel free to use/modify.
-
 ### Ubuntu
 For the kodi user to access devices on `/dev/ttyxxxx`, users will need to edit `init/sysusers.conf` and uncomment the line corresponding to enable membership in the dialout group.
 
