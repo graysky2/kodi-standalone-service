@@ -19,21 +19,21 @@ common/$(PN):
 
 install-common:
 	$(INSTALL_DIR) "$(DESTDIR)$(UDEVDIR)"
-	$(INSTALL_DATA) udev/99-kodi.rules "$(DESTDIR)$(UDEVDIR)/99-kodi.rules"
+	$(INSTALL_DATA) x86/udev/99-kodi.rules "$(DESTDIR)$(UDEVDIR)/99-kodi.rules"
 
 install-init:
 	$(INSTALL_DIR) "$(DESTDIR)$(INITDIR)"
 	$(INSTALL_DIR) "$(DESTDIR)$(USERDIR)"
 	$(INSTALL_DIR) "$(DESTDIR)$(TMPFDIR)"
-	$(INSTALL_DATA) init/kodi-gbm.service "$(DESTDIR)$(INITDIR)/kodi-gbm.service"
-	$(INSTALL_DATA) init/kodi-wayland.service "$(DESTDIR)$(INITDIR)/kodi-wayland.service"
-	$(INSTALL_DATA) init/kodi-x11.service "$(DESTDIR)$(INITDIR)/kodi-x11.service"
-	$(INSTALL_DATA) init/tmpfiles.conf "$(DESTDIR)$(TMPFDIR)/kodi-standalone.conf"
-	$(INSTALL_DATA) init/sysusers.conf "$(DESTDIR)$(USERDIR)/kodi-standalone.conf"
+	$(INSTALL_DATA) x86/init/kodi-gbm.service "$(DESTDIR)$(INITDIR)/kodi-gbm.service"
+	$(INSTALL_DATA) x86/init/kodi-wayland.service "$(DESTDIR)$(INITDIR)/kodi-wayland.service"
+	$(INSTALL_DATA) x86/init/kodi-x11.service "$(DESTDIR)$(INITDIR)/kodi-x11.service"
+	$(INSTALL_DATA) x86/init/tmpfiles.conf "$(DESTDIR)$(TMPFDIR)/kodi-standalone.conf"
+	$(INSTALL_DATA) x86/init/sysusers.conf "$(DESTDIR)$(USERDIR)/kodi-standalone.conf"
 
 install-man:
 	$(INSTALL_DIR) "$(DESTDIR)$(MANDIR)"
-	$(INSTALL_DATA) doc/kodi.service.1 "$(DESTDIR)$(MANDIR)/kodi.service.1"
+	$(INSTALL_DATA) x86/doc/kodi.service.1 "$(DESTDIR)$(MANDIR)/kodi.service.1"
 
 uninstall:
 	$(RM) "$(DESTDIR)$(INITDIR)/kodi-gbm.service"
