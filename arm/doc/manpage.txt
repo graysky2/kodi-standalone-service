@@ -24,7 +24,7 @@ o If a CLI option is preferred, use kodi-send to issue the command to reboot or 
 Note that kodi-send is provided by the kodi-xxx-eventclients package where xxx is either, rpi, rpi-legacy, or git depending on which package group you installed.
 
 PASSING ENVIRONMENT VARIABLES TO THE SERVICE
-Should the need arise, one can pass environment variables to the service by creating /etc/conf.d/kodi-standalone and populating it with the needed variables.
+Certain use cases require environment variables to be passed to the service. Define these variables in /etc/conf.d/kodi-standalone and they will be passed along to the service.
 
 CONTRIBUTE
 Users wishing to contribute to this code, should fork and send a pull request. Source is freely available on the project page linked below.

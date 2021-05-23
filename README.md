@@ -49,10 +49,9 @@ Simply [start/enable](https://wiki.archlinux.org/index.php/Systemd#Using_units) 
 * xorg-server and xorg-xinit (for running x11)
 
 ## Passing environment variables to the service
-Should the need arise, one can pass environment variables to the service by creating `/etc/conf.d/kodi-standalone` and populating it with the needed variables.
+Certain use cases require environment variables to be passed to the service. Define these variables in `/etc/conf.d/kodi-standalone` and they will be passed along to the service.
 
 ## Notes on system shutdown/reboot
-
 Be aware that these services run Kodi in systemd's user.slice not in the system.slice.  In order to have Kodi gracefully exit, the system should be called to shutdown or to reboot using the respective Kodi actions not by a call to systemctl.  Failure to do so will result in an ungraceful exit of Kodi and the saving of GUI settings, Kodi uptime etc. will not occur.  In principal this is no different than data loss occurring from a user doing work when a sysadmin issues a reboot command without prior warning.  While it is possible to run Kodi in systemd's system.slice instead, doing so makes it difficult to use USB mounts within Kodi and to use pulseaudio for Kodi sessions.
 
 ### Recommended methods to reboot/shutdown

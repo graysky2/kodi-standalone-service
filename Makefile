@@ -6,6 +6,7 @@ USERDIR = $(PREFIX)/lib/sysusers.d
 TMPFDIR = $(PREFIX)/lib/tmpfiles.d
 UDEVDIR = $(PREFIX)/lib/udev/rules.d
 MANDIR = $(PREFIX)/share/man/man1
+ENVDIR = /etc/conf.d
 
 RM = rm
 INSTALL = install -p
@@ -19,7 +20,9 @@ common/$(PN):
 
 install-common:
 	$(INSTALL_DIR) "$(DESTDIR)$(UDEVDIR)"
+	$(INSTALL_DIR) "$(DESTDIR)$(ENVDIR)"
 	$(INSTALL_DATA) x86/udev/99-kodi.rules "$(DESTDIR)$(UDEVDIR)/99-kodi.rules"
+	$(INSTALL_DATA) common/kodi-standalone "$(DESTDIR)$(ENVDIR)/kodi-standalone"
 
 install-init:
 	$(INSTALL_DIR) "$(DESTDIR)$(INITDIR)"
@@ -43,6 +46,7 @@ uninstall:
 	$(RM) "$(DESTDIR)$(USERDIR)/kodi-standalone.conf"
 	$(RM) "$(DESTDIR)$(UDEVDIR)/99-kodi.rules"
 	$(RM) "$(DESTDIR)$(MANDIR)/kodi.service.1"
+	$(RM) "$(DESTDIR)$(ENVDIR)/kodi-standalone"
 
 install: install-common install-init install-man
 
