@@ -20,24 +20,9 @@ Users of other distros can just run `make install` as the root user.  Then, as t
 Note that the kodi user's home directory is `/var/lib/kodi/` in this example, NOT `/home/kodi/` like a regular user.
 
 #### Notes for users of non-Arch Linux distros
-1. Arch Linux ships three discrete Kodi packages, each providing a different Kodi executable (`kodi-x11`, `kodi-wayland`, and `kodi-gbm`) but other distros may not do this and may ship a combined Kodi binary (called `kodi.bin`).  If your distro ships `kodi.bin` rather than the discrete executables you must adjust the name of the Kodi executable in the `ExecStop=` line accordingly.  Failure to do so will result in Kodi getting killed before it can perform exit tasks and can result in data loss to your profile.
+1. Users of Ubuntu ≥20.0 will need to copy the contents of [sysusers.conf](https://github.com/graysky2/kodi-standalone-service/blob/master/x86/init/sysusers.conf) to `/etc/sysusers.d/kodi.conf` and uncomment the line adding kodi user to the `render` group.
 
-Do this modification using a [systemd drop-in](https://wiki.archlinux.org/title/Systemd#Drop-in_files).
-
-Example:
-```
-# systemctl edit kodi-x11
-
-<< you are creating a drop-in >>
-
-[Service]
-ExecStop=
-ExecStop=/usr/bin/killall --user kodi --exact --wait kodi.bin
-```
-
-2. Users of Ubuntu ≥20.0 will need to copy the contents of [sysusers.conf](https://github.com/graysky2/kodi-standalone-service/blob/master/x86/init/sysusers.conf) to `/etc/sysusers.d/kodi.conf` and uncomment the line adding kodi user to the `render` group.
-
-3. Users of Ubuntu wishing the kodi user to access devices on `/dev/ttyxxxx`, will need to copy the contents of [sysusers.conf](https://github.com/graysky2/kodi-standalone-service/blob/master/x86/init/sysusers.conf) to `/etc/sysusers.d/kodi.conf` and uncomment the line adding the kodi user to the `dialout` group.
+2. Users of Ubuntu wishing the kodi user to access devices on `/dev/ttyxxxx`, will need to copy the contents of [sysusers.conf](https://github.com/graysky2/kodi-standalone-service/blob/master/x86/init/sysusers.conf) to `/etc/sysusers.d/kodi.conf` and uncomment the line adding the kodi user to the `dialout` group.
 
 ## Usage
 Simply [start/enable](https://wiki.archlinux.org/index.php/Systemd#Using_units) the requisite service.

@@ -12,7 +12,7 @@ PAMName=login
 TTYPath=/dev/tty1
 Environment=WINDOWING=x11
 ExecStart=/usr/bin/xinit /usr/bin/kodi-standalone -- :0 -quiet -nolisten tcp vt1
-ExecStop=/usr/bin/killall --user kodi --exact --wait kodi-x11
+ExecStop=/usr/bin/killall --user kodi --exact --wait kodi.bin
 Restart=on-abort
 StandardInput=tty
 StandardOutput=journal

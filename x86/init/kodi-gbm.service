@@ -13,7 +13,7 @@ PAMName=login
 TTYPath=/dev/tty1
 Environment=WINDOWING=gbm
 ExecStart=/usr/lib/kodi/kodi-gbm
-ExecStop=/usr/bin/killall --user kodi --exact --wait kodi-gbm
+ExecStop=/usr/bin/killall --user kodi --exact --wait kodi.bin
 Restart=on-abort
 StandardInput=tty
 StandardOutput=journal
