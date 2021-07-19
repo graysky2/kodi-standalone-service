@@ -12,7 +12,6 @@ Environment="XDG_RUNTIME_DIR=%t/kodi"
 EnvironmentFile=-/etc/conf.d/kodi-standalone
 PAMName=login
 TTYPath=/dev/tty1
-Environment=WINDOWING=wayland
 ExecStart=/usr/bin/cage -- /usr/bin/kodi-standalone
 ExecStop=/usr/bin/killall --user kodi --exact --wait kodi.bin
 Restart=on-abort

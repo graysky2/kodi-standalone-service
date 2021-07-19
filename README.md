@@ -19,6 +19,14 @@ Users of other distros can just run `make install` as the root user.  Then, as t
 
 Note that the kodi user's home directory is `/var/lib/kodi/` in this example, NOT `/home/kodi/` like a regular user.
 
+### Dependencies
+Note that I list some dependencies below that the Arch package already has listed as dependencies.  This is to help users of other distros whose kodi packages may not have these listed.  If you're installing this from the AUR package listed above, just pay attention to pacman's post-install message which calls out the Arch-specific `optdepends` needed for the various service files to work.
+
+* kodi (>=19.1 on Arch Linux, lower versions may work with other distros)
+* cage, libinput, and xorg-xwayland (for running wayland)
+* libinput (for running gbm)
+* xorg-server and xorg-xinit (for running x11)
+
 #### Notes for users of non-Arch Linux distros
 1. Users of Ubuntu ≥20.0 will need to copy the contents of [sysusers.conf](https://github.com/graysky2/kodi-standalone-service/blob/master/x86/init/sysusers.conf) to `/etc/sysusers.d/kodi.conf` and uncomment the line adding kodi user to the `render` group.
 
@@ -26,12 +34,6 @@ Note that the kodi user's home directory is `/var/lib/kodi/` in this example, NO
 
 ## Usage
 Simply [start/enable](https://wiki.archlinux.org/index.php/Systemd#Using_units) the requisite service.
-
-## Dependencies
-* kodi (x11 or wayland or gbm)
-* libinput and cage (for running wayland)
-* libinput (for running gbm)
-* xorg-server and xorg-xinit (for running x11)
 
 ## Passing environment variables to the service
 Certain use cases require environment variables to be passed to the service. Define these variables in `/etc/conf.d/kodi-standalone` and they will be passed along to the service.
