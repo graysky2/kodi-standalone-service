@@ -14,7 +14,7 @@ Provided services are:
 .IP \(bu 3
 /usr/lib/systemd/system/kodi-wayland.service
 .SH NOTES ON SYSTEM SHUTDOWN/REBOOT
-Be aware that these services run Kodi in systemd's user.slice not in the system.slice. In order to have Kodi gracefully exit, the system should be called to shutdown or to reboot using the respective Kodi actions not by a call to systemctl.
+Be aware that these services run Kodi in systemd's system.slice not in the user.slice. In order to have Kodi gracefully exit, the system should be called to shutdown or to reboot using the respective Kodi actions not by a call to systemctl.
 .PP
 This is NOT recommended:
 .PP
@@ -24,7 +24,7 @@ This is NOT recommended:
 
 .fam T
 .fi
-If you do reboot or shutdown via a call to systemctl, this will result in systemd killing the cg too quickly and data loss to your Kodi profile will occur. When Kodi exits cleanly, it will save GUI settings, media settings, Kodi uptime etc. In principal this is no different than data loss occurring from a user doing work when a sysadmin issues a reboot command without prior warning. While it is possible to run Kodi in systemd's system.slice instead, doing so makes it difficult to use USB mounts within Kodi and to use pulseaudio for Kodi sessions.
+If you do reboot or shutdown via a call to systemctl, this will result in systemd killing the cg too quickly and data loss to your Kodi profile will occur. When Kodi exits cleanly, it will save GUI settings, media settings, Kodi uptime etc. In principal this is no different than data loss occurring from a user doing work when a sysadmin issues a reboot command without prior warning. While it is possible to run Kodi in systemd's user.slice instead, doing so makes it difficult to use USB mounts within Kodi and to use pulseaudio for Kodi sessions.
 .SH RECOMMENDED METHODS TO SHUTDOWN/REBOOT
 Here are several options:
 .IP \(bu 3
