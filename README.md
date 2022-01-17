@@ -32,6 +32,8 @@ Note that I list some dependencies below that the Arch package already has liste
 
 2. Users of Ubuntu wishing the kodi user to access devices on `/dev/ttyxxxx`, will need to edit `/etc/sysusers.d/kodi-standalone.conf` and uncomment the line adding the kodi user to the `dialout` group.
 
+3. On Raspberrypi OS, and other arm distro, you should consider applying the changes to kodi script (usually `/usr/bin/kodi`) from the [patch](https://github.com/graysky2/xbmc/commit/9c157312057958e0ea68121b33d1713e1d12de2c?diff=unified)
+
 ## Usage
 Simply [start/enable](https://wiki.archlinux.org/index.php/Systemd#Using_units) the requisite service.
 
