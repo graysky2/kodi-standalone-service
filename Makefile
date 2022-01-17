@@ -5,6 +5,7 @@ INITDIR = $(PREFIX)/lib/systemd/system
 USERDIR = $(PREFIX)/lib/sysusers.d
 TMPFDIR = $(PREFIX)/lib/tmpfiles.d
 UDEVDIR = $(PREFIX)/lib/udev/rules.d
+POLKDIR = $(PREFIX)/share/polkit/rules.d
 MANDIR = $(PREFIX)/share/man/man1
 ENVDIR = /etc/conf.d
 
@@ -60,6 +61,7 @@ ifeq ($(ARCH),x86)
 	$(RM) "$(DESTDIR)$(INITDIR)/kodi-x11.service"
 else
 	$(RM) "$(DESTDIR)$(INITDIR)/kodi.service"
+	$(RM) "$(DESTDIR)$(POLKDIR)/99-kodi.rules"
 endif
 	$(RM) "$(DESTDIR)$(TMPFDIR)/kodi-standalone.conf"
 	$(RM) "$(DESTDIR)$(USERDIR)/kodi-standalone.conf"
