@@ -28,9 +28,9 @@ Note that I list some dependencies below that the Arch package already has liste
 * xorg-server and xorg-xinit (for running x11)
 
 #### Notes for users of non-Arch Linux distros
-1. Users of Ubuntu ≥20.0 will need to copy the contents of [sysusers.conf](https://github.com/graysky2/kodi-standalone-service/blob/master/x86/init/sysusers.conf) to `/etc/sysusers.d/kodi.conf` and uncomment the line adding kodi user to the `render` group.
+1. Users of Ubuntu ≥20.0 will need to edit `/etc/sysusers.d/kodi-standalone.conf` and uncomment the line adding kodi user to the `render` group.
 
-2. Users of Ubuntu wishing the kodi user to access devices on `/dev/ttyxxxx`, will need to copy the contents of [sysusers.conf](https://github.com/graysky2/kodi-standalone-service/blob/master/x86/init/sysusers.conf) to `/etc/sysusers.d/kodi.conf` and uncomment the line adding the kodi user to the `dialout` group.
+2. Users of Ubuntu wishing the kodi user to access devices on `/dev/ttyxxxx`, will need to edit `/etc/sysusers.d/kodi-standalone.conf` and uncomment the line adding the kodi user to the `dialout` group.
 
 ## Usage
 Simply [start/enable](https://wiki.archlinux.org/index.php/Systemd#Using_units) the requisite service.
