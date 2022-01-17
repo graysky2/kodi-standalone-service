@@ -5,6 +5,7 @@ INITDIR = $(PREFIX)/lib/systemd/system
 USERDIR = $(PREFIX)/lib/sysusers.d
 TMPFDIR = $(PREFIX)/lib/tmpfiles.d
 UDEVDIR = $(PREFIX)/lib/udev/rules.d
+POLKDIR = $(PREFIX)/share/polkit/rules.d
 MANDIR = $(PREFIX)/share/man/man1
 ENVDIR = /etc/conf.d
 
@@ -28,7 +29,9 @@ common/$(PN):
 install-common:
 	$(INSTALL_DIR) "$(DESTDIR)$(UDEVDIR)"
 	$(INSTALL_DIR) "$(DESTDIR)$(ENVDIR)"
+	$(INSTALL_DIR) "$(DESTDIR)$(POLKDIR)"
 	$(INSTALL_DATA) $(ARCH)/udev/99-kodi.rules "$(DESTDIR)$(UDEVDIR)/99-kodi.rules"
+	$(INSTALL_DATA) $(ARCH)/polkit/polkit.rules "$(DESTDIR)$(POLKDIR)/99-kodi.rules"
 	$(INSTALL_DATA) common/kodi-standalone "$(DESTDIR)$(ENVDIR)/kodi-standalone"
 ifeq ($(ARCH),arm)
 	$(INSTALL_DIR) "$(DESTDIR)$(POLKDIR)"
@@ -64,6 +67,7 @@ endif
 	$(RM) "$(DESTDIR)$(TMPFDIR)/kodi-standalone.conf"
 	$(RM) "$(DESTDIR)$(USERDIR)/kodi-standalone.conf"
 	$(RM) "$(DESTDIR)$(UDEVDIR)/99-kodi.rules"
+	$(RM) "$(DESTDIR)$(POLKDIR)/99-kodi.rules"
 	$(RM) "$(DESTDIR)$(MANDIR)/kodi.service.1"
 	$(RM) "$(DESTDIR)$(ENVDIR)/kodi-standalone"
 
