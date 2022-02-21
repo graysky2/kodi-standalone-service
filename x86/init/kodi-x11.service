@@ -1,6 +1,6 @@
 [Unit]
 Description=Kodi standalone (X11)
-After=remote-fs.target systemd-user-sessions.service network-online.target nss-lookup.target sound.target bluetooth.target polkit.service upower.service mysqld.service
+After=remote-fs.target systemd-user-sessions.service network-online.target nss-lookup.target sound.target bluetooth.target polkit.service upower.service mysqld.service lircd.service
 Wants=network-online.target polkit.service upower.service
 Conflicts=getty@tty1.service
 
