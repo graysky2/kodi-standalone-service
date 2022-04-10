@@ -3,7 +3,7 @@ Run [Kodi](https://kodi.tv/) as an unprivileged user in standalone mode without 
 
 Which one to choose?
 
-In terms of functionality, X11 is probably the most mature and feature rich.  Wayland is next in line and should be considered on-par with X11, however, a known limitation of Wayland is having the resolution and frame rate set in the compositor rather than in kodi's GUI.  As well, Wayland currently does not support VT switching.  GBM has some known features it lacks compared the X11 and Wayland.  A complete list can be found in [Kodi issue 14876](https://github.com/xbmc/xbmc/issues/14876).
+In terms of functionality, GBM is currently the most feature rich. It is the only one of the three options able to display HDR content. X11 and Wayland are both a close second and should be considered on-par with GBM, however, a known limitation of Wayland is having the resolution and frame rate set in the compositor rather than in kodi's GUI.  As well, Wayland currently does not support VT switching.  GBM has some known features it lacks compared the X11 and Wayland.  A complete list can be found in [Kodi issue 14876](https://github.com/xbmc/xbmc/issues/14876).
 
 Another factor that may affect choice is the number of dependencies required to run which will vary distro-to-distro.
 
