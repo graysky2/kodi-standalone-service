@@ -1,5 +1,5 @@
 # kodi-standalone-service
-Systemd service units to run [Kodi](https://kodi.tv/) in standalone mode without the need for a DE.  X11, Wayland, and GBM are supported.
+Run [Kodi](https://kodi.tv/) as an unprivileged user in standalone mode without the need for a full Desktop Environment.  X11, Wayland, and GBM are supported.
 
 Which one to choose?
 
