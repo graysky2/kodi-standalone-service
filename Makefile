@@ -15,7 +15,7 @@ INSTALL_DIR = $(INSTALL) -d
 INSTALL_PROGRAM = $(INSTALL) -m755
 INSTALL_DATA = $(INSTALL) -m644
 
-IS_ARCH_ARM := $(shell grep -q ARM /proc/cpuinfo; echo $$?)
+IS_ARCH_ARM := $(shell uname -m | grep -q -E "^(arm|aarch64)"; echo $$?)
 ifeq ($(IS_ARCH_ARM), 0)
 	ARCH = arm
 else
