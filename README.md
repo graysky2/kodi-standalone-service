@@ -33,9 +33,11 @@ Note that I list some dependencies below that the Arch package already has liste
 2. Users of Ubuntu wishing the kodi user to access devices on `/dev/ttyxxxx`, will need to edit `/etc/sysusers.d/kodi-standalone.conf` and uncomment the line adding the kodi user to the `dialout` group.
 
 #### Notes for Users of RPiOS
-To use this with RPiOS requires a few extra steps.
-1. Set the boot preference to boot to the console, see https://github.com/graysky2/kodi-standalone-service/issues/37
-2. Replace `/usr/bin/kodi` with vanilla upstream's version.  See [here](https://github.com/graysky2/kodi-standalone-service/files/7888328/kodi.txt) for an example that is known to work with RPiOS as of Matrix-19.3.
+To use this with RPiOS Lite (Rasbian 11: Bullseye, Kodi 19.4: Matrix) requires an extra step.
+1. Ensure that the boot preference is set to a graphical target.  
+`sudo systemctl set-default graphical.target`  
+This causes the kodi service to launch automatically on boot via `display-manager.target`.
+2. Install the `kodi-eventclients-kodi-send` package and see [shutdown/reboot](https://github.com/graysky2/kodi-standalone-service#notes-on-system-shutdownreboot).
 
 ## Usage
 Simply [start/enable](https://wiki.archlinux.org/index.php/Systemd#Using_units) the requisite service.
