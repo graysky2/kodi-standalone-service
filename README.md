@@ -32,12 +32,17 @@ Note that I list some dependencies below that the Arch package already has liste
 
 2. Users of Ubuntu wishing the kodi user to access devices on `/dev/ttyxxxx`, will need to edit `/etc/sysusers.d/kodi-standalone.conf` and uncomment the line adding the kodi user to the `dialout` group.
 
-#### Notes for Users of RPiOS
-To use this with RPiOS Lite (Rasbian 11: Bullseye, Kodi 19.4: Matrix) requires an extra step.
+#### Notes for users of RPiOS
+To use this with RPiOS Lite (Rasbian 11: Bullseye, Kodi 19.4: Matrix) requires extra setup.
+
 1. Ensure that the boot preference is set to a graphical target.  
 `sudo systemctl set-default graphical.target`  
 This causes the kodi service to launch automatically on boot via `display-manager.target`.
+
 2. Install the `kodi-eventclients-kodi-send` package and see [shutdown/reboot](https://github.com/graysky2/kodi-standalone-service#notes-on-system-shutdownreboot).
+
+#### Notes for users of Proxmox
+If running kodi containerized on Proxmox, see [Issue #47](https://github.com/graysky2/kodi-standalone-service/issues/47).
 
 ## Usage
 Simply [start/enable](https://wiki.archlinux.org/index.php/Systemd#Using_units) the requisite service.
@@ -53,24 +58,16 @@ Here are several options:
 
 * Select the corresponding option under Power menu in the Kodi GUI.
 * Use the official Android/iOS remote app.
-* If a CLI option is preferred, use `kodi-send` to issue a `Reboot` or `ShutDown()` like so:
+* If a CLI option is preferred, use `kodi-send` to issue a `Reboot` or `ShutDown` like so:
 ```
-$ kodi-send -a "Reboot"
-$ kodi-send -a "ShutDown()"
+$ kodi-send -a Reboot
+$ kodi-send -a ShutDown
 ```
 
 ## Acknowledgments
 Much of the credit for this service goes to the Arch Linux maintainers of the official kodi package. Note that they removed it upon the [1.16-1 release of Xorg](https://git.archlinux.org/svntogit/community.git/commit/trunk?h=packages/xbmc&id=9763c6d32678f3a3f45c195bfae92eee209d504f).
 
 ## Tips and Tricks
-### Service not starting
-Most users should not need `/etc/X11/Xwrapper.config` since the created X server becomes the [controlling process](http://www.freedesktop.org/software/systemd/man/systemd.exec.html#StandardInput=) of the VT to which it is bound. Most users does not mean all users. There have been reports of some AMD users still requiring this file. As well, users of Xorg's native modesetting driver may also require it.
-
-The recommendation is to first try starting `kodi-x11.service` without it, but if the service fails to start X, you may need to create `/etc/X11/Xwrapper.config` which should contain the following:
-```
-needs_root_rights = yes
-```
-
 ### Running Kodi web service on a privileged port
 Users wishing to run the kodi web service on a privileged port (i.e. <1024) can simply use a [systemd drop-in](https://wiki.archlinux.org/index.php/Systemd#Drop-in_files) modification as follows:
 ```
