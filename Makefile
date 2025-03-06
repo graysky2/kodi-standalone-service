@@ -44,6 +44,9 @@ ifeq ($(ARCH),x86)
 	$(INSTALL_DATA) $(ARCH)/init/kodi-gbm.service "$(DESTDIR)$(INITDIR)/kodi-gbm.service"
 	$(INSTALL_DATA) $(ARCH)/init/kodi-wayland.service "$(DESTDIR)$(INITDIR)/kodi-wayland.service"
 	$(INSTALL_DATA) $(ARCH)/init/kodi-x11.service "$(DESTDIR)$(INITDIR)/kodi-x11.service"
+	$(INSTALL_DATA) $(ARCH)/init/kodi-gbm-restart-on-resume.service "$(DESTDIR)$(INITDIR)/kodi-gbm-restart-on-resume.service"
+	$(INSTALL_DATA) $(ARCH)/init/kodi-wayland-restart-on-resume.service "$(DESTDIR)$(INITDIR)/kodi-wayland-restart-on-resume.service"
+	$(INSTALL_DATA) $(ARCH)/init/kodi-x11-restart-on-resume.service "$(DESTDIR)$(INITDIR)/kodi-x11-restart-on-resume.service"
 else
 	$(INSTALL_DATA) $(ARCH)/init/kodi.service "$(DESTDIR)$(INITDIR)/kodi.service"
 endif

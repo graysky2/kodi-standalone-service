@@ -68,6 +68,15 @@ $ kodi-send -a ShutDown
 Much of the credit for this service goes to the Arch Linux maintainers of the official kodi package. Note that they removed it upon the [1.16-1 release of Xorg](https://git.archlinux.org/svntogit/community.git/commit/trunk?h=packages/xbmc&id=9763c6d32678f3a3f45c195bfae92eee209d504f).
 
 ## Tips and Tricks
+### Automatically restart upon resuming from suspend ###
+If the machine is suspended or hibernated, kodi running with these services may have issues upon resuming.
+
+Known issues include:
+* Broken connection to an external database (mariadb)
+* Using some plugins (observed with official YouTube plugin) simply not working upon resume
+
+To circumvent, enable the provided kodi-xxx-restart-on-resume.service (where xxx is either gbm, wayland, or x11) which will handle an auto-restart when the system is resumed.
+
 ### Running Kodi web service on a privileged port
 Users wishing to run the kodi web service on a privileged port (i.e. <1024) can simply use a [systemd drop-in](https://wiki.archlinux.org/index.php/Systemd#Drop-in_files) modification as follows:
 ```
