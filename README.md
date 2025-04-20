@@ -7,6 +7,12 @@ In terms of functionality, GBM is currently the most feature rich. It is the onl
 
 Another factor that may affect choice is the number of dependencies required to run which will vary distro-to-distro.
 
+## Dependencies
+* systemd >=257
+* polkit
+
+Note - some distros might be shipping versions of systemd that do not meet the above min. version requirement. As a result, users should modify [this line from sysusers.conf](https://github.com/graysky2/kodi-standalone-service/blob/master/x86/init/sysusers.conf#L5) to exclude the literal `!` from the `u!` to insure compatibility. See: [Issue#56](https://github.com/graysky2/kodi-standalone-service/issues/56).
+
 ## Installation
 ### Arch Linux
 Arch Linux users (likely users of Arch clones) can find a PKGBUILD in the [AUR](https://aur.archlinux.org/packages/kodi-standalone-service) that will take care of everything. Simply install and use.
@@ -35,8 +41,8 @@ Note that I list some dependencies below that the Arch package already has liste
 #### Notes for users of RPiOS
 To use this with RPiOS Lite (Rasbian 11: Bullseye, Kodi 19.4: Matrix) requires extra setup.
 
-1. Ensure that the boot preference is set to a graphical target.  
-`sudo systemctl set-default graphical.target`  
+1. Ensure that the boot preference is set to a graphical target.
+`sudo systemctl set-default graphical.target`
 This causes the kodi service to launch automatically on boot via `display-manager.target`.
 
 2. Install the `kodi-eventclients-kodi-send` package and see [shutdown/reboot](https://github.com/graysky2/kodi-standalone-service#notes-on-system-shutdownreboot).
