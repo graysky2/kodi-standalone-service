@@ -1,5 +1,5 @@
 [Unit]
-Description=Kodi standalone (GBM)
+Description=Kodi standalone
 After=remote-fs.target systemd-user-sessions.service network-online.target nss-lookup.target sound.target bluetooth.target polkit.service upower.service mysqld.service lircd.service
 Wants=network-online.target polkit.service upower.service
 Conflicts=getty@tty1.service
@@ -10,8 +10,7 @@ Group=kodi
 EnvironmentFile=-/etc/conf.d/kodi-standalone
 PAMName=login
 TTYPath=/dev/tty1
-ExecStart=/usr/bin/kodi-standalone
-ExecStop=/usr/bin/killall --exact --wait kodi.bin
+ExecStart=/usr/lib/kodi/kodi.bin --standalone
 Restart=on-abort
 StandardInput=tty
 StandardOutput=journal
