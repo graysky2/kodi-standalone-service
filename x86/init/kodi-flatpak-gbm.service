@@ -1,0 +1,20 @@
+[Unit]
+Description=Kodi standalone (Flatpak, GBM)
+After=remote-fs.target systemd-user-sessions.service network-online.target nss-lookup.target sound.target bluetooth.target polkit.service upower.service mysqld.service lircd.service
+Wants=network-online.target polkit.service upower.service
+Conflicts=getty@tty1.service
+
+[Service]
+User=kodi
+Group=kodi
+EnvironmentFile=-/etc/conf.d/kodi-standalone
+SupplementaryGroups=input
+PAMName=login
+TTYPath=/dev/tty1
+ExecStart=flatpak run tv.kodi.Kodi --standalone --windowing=gbm
+Restart=on-abort
+StandardInput=tty
+StandardOutput=journal
+
+[Install]
+Alias=display-manager.service
