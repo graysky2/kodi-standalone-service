@@ -7,6 +7,7 @@ Conflicts=getty@tty1.service
 [Service]
 User=kodi
 Group=kodi
+SupplementaryGroups=audio disk input network optical power storage tty uucp video video_dma
 EnvironmentFile=-/etc/conf.d/kodi-standalone
 PAMName=login
 TTYPath=/dev/tty1

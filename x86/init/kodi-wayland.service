@@ -7,6 +7,7 @@ Conflicts=getty@tty1.service
 [Service]
 User=kodi
 Group=kodi
+SupplementaryGroups=audio video optical power
 RuntimeDirectory=kodi
 Environment="XDG_RUNTIME_DIR=%t/kodi"
 EnvironmentFile=-/etc/conf.d/kodi-standalone
@@ -17,6 +18,12 @@ ExecStop=/usr/bin/killall --exact --wait kodi.bin
 Restart=on-abort
 StandardInput=tty
 StandardOutput=journal
+# Some distributions require additional group membership via drop-in overrides:
+# Ubuntu >=20: add 'render' to SupplementaryGroups= for hardware acceleration
+# Ubuntu tty access: add 'dialout' to SupplementaryGroups=
+# Example drop-in at /etc/systemd/system/kodi-wayland.service.d/override.conf:
+# [Service]
+# SupplementaryGroups=render
 
 [Install]
 Alias=display-manager.service
