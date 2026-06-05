@@ -13,7 +13,7 @@ PAMName=login
 TTYPath=/dev/tty1
 ExecStart=/usr/bin/xinit /usr/bin/kodi-standalone -- :0 -quiet -nolisten tcp vt1
 ExecStop=/usr/bin/killall --exact --wait kodi.bin
-Restart=on-abort
+Restart=always
 StandardInput=tty
 StandardOutput=journal
 # Some distributions require additional group membership via drop-in overrides:
