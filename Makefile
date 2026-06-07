@@ -41,9 +41,11 @@ install-init:
 	$(INSTALL_DIR) "$(DESTDIR)$(USERDIR)"
 	$(INSTALL_DIR) "$(DESTDIR)$(TMPFDIR)"
 ifeq ($(ARCH),x86)
+	$(INSTALL_DATA) $(ARCH)/init/kodi-flatpak-gbm.service "$(DESTDIR)$(INITDIR)/kodi-flatpak-gbm.service"
 	$(INSTALL_DATA) $(ARCH)/init/kodi-gbm.service "$(DESTDIR)$(INITDIR)/kodi-gbm.service"
 	$(INSTALL_DATA) $(ARCH)/init/kodi-wayland.service "$(DESTDIR)$(INITDIR)/kodi-wayland.service"
 	$(INSTALL_DATA) $(ARCH)/init/kodi-x11.service "$(DESTDIR)$(INITDIR)/kodi-x11.service"
+	$(INSTALL_DATA) $(ARCH)/init/kodi-flatpak-gbm-restart-on-resume.service "$(DESTDIR)$(INITDIR)/kodi-flatpak-gbm-restart-on-resume.service"
 	$(INSTALL_DATA) $(ARCH)/init/kodi-gbm-restart-on-resume.service "$(DESTDIR)$(INITDIR)/kodi-gbm-restart-on-resume.service"
 	$(INSTALL_DATA) $(ARCH)/init/kodi-wayland-restart-on-resume.service "$(DESTDIR)$(INITDIR)/kodi-wayland-restart-on-resume.service"
 	$(INSTALL_DATA) $(ARCH)/init/kodi-x11-restart-on-resume.service "$(DESTDIR)$(INITDIR)/kodi-x11-restart-on-resume.service"
@@ -59,6 +61,7 @@ install-man:
 
 uninstall:
 ifeq ($(ARCH),x86)
+	$(RM) "$(DESTDIR)$(INITDIR)/kodi-flatpak-gbm.service"
 	$(RM) "$(DESTDIR)$(INITDIR)/kodi-gbm.service"
 	$(RM) "$(DESTDIR)$(INITDIR)/kodi-wayland.service"
 	$(RM) "$(DESTDIR)$(INITDIR)/kodi-x11.service"
